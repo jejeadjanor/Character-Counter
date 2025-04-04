@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="./styles.css">
+  
+  <title>Frontend Mentor | Character counter</title>
+</head>
+<body class="body">
+<div class="container">
+  <header>
+      <div class="logo">
+        <img class="logo-icon" src="./assets/images/logo-dark-theme.svg" alt="logo-dark-theme" sizes="" srcset="">
+      </div>
+      <img src="./assets/images/icon-sun.svg" alt="settings" sizes="" srcset="" class="settings">
+  </header>
+  <main class="content">
+      <div class="content-heading">
+        <h1 class="heading">Analyze your text</h1>
+        <h1 class="heading">in real-time</h1>
+      </div>
+      <textarea class="text-area" name="" id="text-input" placeholder="Enter your text here..."></textarea>
+  </main>
+  <div class="controls">
+    <div class="checkboxes">
+      <label class="checkbox-label">
+        <input type="checkbox"></input>
+        <span class="checkbox-span"></span>
+        Excludes Spaces
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox"></input>
+        <span class="checkbox-span"></span>
+        Set Character Limit
+      </label>
+    </div>
+    <div class="reading-time">
+        Approx. reading time: <span>1 minute</span>
+    </div>
+  </div>
+    <div class="stats-grid">
+        <div class="stat-card purple">
+          <h2 class="stat-number">278</h2>
+          <p>Total Characters</p>
+          <img src="./assets/images/pattern-character-count.svg" alt="" class="stat-img">
+        </div>
+        <div class="stat-card yellow">
+          <h2 class="stat-number">39</h2>
+          <p>Word Count</p>
+          <img src="./assets/images/pattern-word-count.svg" alt="" class="stat-img">
+        </div>
+        <div class="stat-card coral">
+          <h2 class="stat-number">04</h2>
+          <p>Sentence Count</p>
+          <img src="./assets/images/pattern-sentence-count.svg" alt="" class="stat-img">
+        </div>
+    </div>
+    <div class="letter-density">
+      <h3 class="density-title"></h3>
+      <div class="density-progress">
+
+      </div>
+    </div>
+</div>
+</body>
+</html>
