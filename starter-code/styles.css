@@ -40,6 +40,35 @@
     padding: 2rem;
 }
 
+@media (min-width: 350px) {
+    .body {
+        background-color: #12131A;
+        font-family: 'DMSans-Regular';
+        color: #ffffff;
+        margin: 1rem 2rem 3rem;
+    }
+    .container {
+        max-width: 800dvw;
+        margin: 0 auto;
+        padding: 0.5rem;
+    }
+}
+
+
+@media (min-width: 640px) {
+    .body {
+        background-color: #12131A;
+        font-family: 'DMSans-Regular';
+        color: #ffffff;
+        margin: 1rem 3rem 3rem;
+    }
+    .container {
+        max-width: 800dvw;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -236,7 +265,7 @@ color: #A5A5B3;
 
 .seemore-button {
     text-decoration: none;
-    font-size: 1.75rem;
+    font-size: 1.2rem;
     color: #ffffff;
 }
 
