@@ -3,29 +3,33 @@
     --purple-card: #D8A6FF;
     --yellow-card: #FF9E22;
     --coral-card: #FF8B6E;
+    --background-dark: #12131A;
 }
 
+/* Font Import */
 @font-face {
     font-family: 'DMSans-Bold';
     src: url(./assets/fonts/DM_Sans/static/DMSans-Bold.ttf);
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'DMSans-Regular';
     src: url(./assets/fonts/DM_Sans/static/DMSans-Regular.ttf);
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'DMSans-SemiBold';
     src: url(./assets/fonts/DM_Sans/static/DMSans-SemiBold.ttf);
+    font-display: swap;
 }
 
 
-.body {
-    background-color: #12131A;
-    font-family: 'DMSans-Regular';
+body {
+    background-color: var(--background-dark);
+    font-family: 'DMSans-Regular',sans-serif;
     color: #ffffff;
-    margin: 1rem 6rem 3rem;
 }
 
 * {
@@ -37,35 +41,29 @@
 .container {
     max-width: 800dvw;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 0 1rem;
 }
 
-@media (min-width: 350px) {
-    .body {
-        background-color: #12131A;
-        font-family: 'DMSans-Regular';
-        color: #ffffff;
-        margin: 1rem 2rem 3rem;
-    }
-    .container {
-        max-width: 800dvw;
-        margin: 0 auto;
-        padding: 0.5rem;
-    }
+.body {
+    margin: 1rem 1rem 3rem;
 }
-
 
 @media (min-width: 640px) {
     .body {
-        background-color: #12131A;
-        font-family: 'DMSans-Regular';
-        color: #ffffff;
-        margin: 1rem 3rem 3rem;
+        margin: 3rem;
     }
-    .container {
-        max-width: 800dvw;
-        margin: 0 auto;
-        padding: 1rem;
+}
+
+
+@media (min-width: 768px) {
+    .body {
+        margin: 1rem 5rem 3rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .body {
+        margin: 1rem 10rem 3rem;
     }
 }
 
