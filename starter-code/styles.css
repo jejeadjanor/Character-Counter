@@ -189,10 +189,15 @@ color: #A5A5B3;
 
 @media (min-width: 640px) {
     .stats-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
+@media (min-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
 .stat-card {
     border-radius: 0.5rem;
     padding: 1.5rem;
@@ -215,10 +220,9 @@ color: #A5A5B3;
 }
 
 .stat-img{
-    content: "";
     position: absolute;
     top: 0;
-    left: 12rem;
+    left: 26rem;
     right: 0;
     bottom: 0;
     opacity: 0.1rem;
@@ -226,18 +230,49 @@ color: #A5A5B3;
     pointer-events: none;
 }
 
+@media (min-width: 640px) {
+    .stat-img {
+        left: 15rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .stat-img {
+        left: 15rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .stat-img {
+        left: 10rem;
+    }
+}
+
+
 .stat-number {
     font-size: 3rem;
     font-weight: bold;
     margin-bottom: 0.75rem;
 }
 
+@media (min-width: 640px) {
+    .stat-number {
+        font-size: 3rem;
+    }
+}
+
 .letter-density {
     margin-top: 1rem;
 }
 .density-title {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     margin-bottom: 1rem;
+}
+
+@media (min-width: 640px) {
+    .density-title {
+        font-size: 1.5rem;
+    }
 }
 .density-progress {
     display: flex;
@@ -271,6 +306,8 @@ color: #A5A5B3;
     text-decoration: none;
     font-size: 1.2rem;
     color: #ffffff;
+    margin-top: 1rem;
+    display: inline-block;
 }
 
 
