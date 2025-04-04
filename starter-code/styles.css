@@ -1,20 +1,4 @@
 /* define variables for the primary colors */
-/* $lightblue_1 : #F0F4F4;
-$black: #000000;
-$neutral_900: #12131A;
-$neutral_800: #21222C;
-$neutral_700: #2A2B37;
-$neutral_600: #404254;
-$white: #FFFFFF;
-$neutral_200: #E4E4EF;
-$neutral_100: #F2F2F7; 
-$royal_blue: #3E54A3;
-$purple_400: #D3A0FA;
-$purple_500: #C27CF8;
-$yellow_500: #FF9F00;
-$orange_500: #FE8159;
-$orange_800: #DA3701; */
-
 :root {
     --purple-card: #D8A6FF;
     --yellow-card: #FF9E22;
@@ -212,6 +196,45 @@ color: #A5A5B3;
 .stat-number {
     font-size: 3rem;
     font-weight: bold;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
 }
+
+.letter-density {
+    margin-top: 1rem;
+}
+.density-title {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+.density-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.bar {
+    display: flex; 
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.mybar {
+    width: 100%;
+    height: auto;
+    background-color: #ffffff;
+    overflow: hidden;
+    border-radius: 50px;
+}
+
+
+.progress-fill {
+    height: 2rem;
+    background-color: var(--purple-card);
+    border-radius: 50px;
+}
+
+
+
+
 
