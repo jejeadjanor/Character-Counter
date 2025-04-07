@@ -138,18 +138,10 @@ header {
     gap: 1rem;
 }
 
-@media (min-width: 640px) {
-    .controls {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-}
-
 .checkboxes {
-    display: flex;
+    display: block;
     gap: 1rem;
-    margin: 2rem;
+    margin-top: 2rem;
 }
 
 .checkbox-label {
@@ -158,6 +150,7 @@ header {
     gap: 0.5rem;
     font-size: 0.875rem;
     cursor: pointer;
+    padding-block: 0.3rem;
 }
 
 .checkbox-label input[type='checkbox'] {
@@ -178,7 +171,91 @@ header {
 .reading-time {
 font-size: 0.875;
 color: #A5A5B3;
+margin-bottom: 1.25rem;
+margin-top: -0.8rem;
 }
+
+@media (min-width: 640px) {
+    .controls {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items:center;
+    }
+
+    .checkboxes {
+        display: flex;
+        gap: 1rem;
+        margin: 2rem;
+    }
+
+    .checkbox-label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        cursor: pointer;
+    }
+
+    .reading-time {
+        font-size: 0.875;
+        color: #A5A5B3;
+    }
+}
+
+@media (min-width: 768px) {
+    .controls {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items:center;
+    }
+
+    .checkboxes {
+        display: flex;
+        gap: 1rem;
+        margin: 2rem;
+    }
+
+    .checkbox-label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        cursor: pointer;
+    }
+
+    .reading-time {
+        font-size: 0.875;
+        color: #A5A5B3;
+    }
+}
+
+@media (min-width: 1024px) {
+    .controls {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items:center;
+    }
+
+    .checkboxes {
+        display: flex;
+        gap: 1rem;
+        margin: 2rem;
+    }
+
+    .checkbox-label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        cursor: pointer;
+    }
+
+    .reading-time {
+        font-size: 0.875;
+        color: #A5A5B3;
+    }
+}
+
 
 /* stats */
 .stats-grid {
@@ -297,14 +374,14 @@ color: #A5A5B3;
 
 
 .progress-fill {
-    height: 2rem;
+    height: 0.75rem;
     background-color: var(--purple-card);
     border-radius: 50px;
 }
 
 .seemore-button {
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #ffffff;
     margin-top: 1rem;
     display: inline-block;
