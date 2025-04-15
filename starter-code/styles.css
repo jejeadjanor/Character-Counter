@@ -4,6 +4,8 @@
     --yellow-card: #FF9E22;
     --coral-card: #FF8B6E;
     --background-dark: #12131A;
+    --error-color: #FF4C4C;
+    --accent-color: #9B87F5;
 }
 
 /* Font Import */
@@ -129,6 +131,12 @@ header {
     height: 200px;
     background-color: #2A2B37;
     color: #ffffff;
+    transition: border 0.3s ease;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
 }
 
 /* controls */

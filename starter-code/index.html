@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   <link rel="stylesheet" href="./styles.css">
   
-  <title>Frontend Mentor | Character counter</title>
+  <title>Character counter</title>
 </head>
 <body class="body">
 <div class="container">
@@ -25,23 +25,28 @@
         <h1 class="heading">in real-time</h1>
       </div>
       <textarea class="text-area" name="" id="text-input" placeholder="Enter your text here..."></textarea>
+      <div class="error-message hidden">
+        <span><i class="fa fa-info-circle" aria-hidden="true"></i></span>
+        <span>Limit reached! Your text exceeds <span id="limit-display">300</span> charaters.</span>
+      </div>
   </section>
   <!-- section 2 -->
   <section class="controls">
     <div class="checkboxes">
       <label class="checkbox-label">
-        <input type="checkbox"></input>
+        <input type="checkbox" id="exclude-spaces" checked>
         <span class="checkbox-span"></span>
         Excludes Spaces
       </label>
       <label class="checkbox-label">
-        <input type="checkbox"></input>
+        <input type="checkbox" id="set-limit" checked>
         <span class="checkbox-span"></span>
         Set Character Limit
       </label>
+      <input type="number" name="" id="limit-input" value="300" min="0">
     </div>
     <div class="reading-time">
-        Approx. reading time: <span>  1 minute</span>
+        Approx. reading time: <span id="reading-time">  0 minute</span>
     </div>
   </section>
   <!-- section 3 -->
@@ -99,5 +104,6 @@
     </section>
   </main>
 </div>
+<script src="./scripts.js"></script>
 </body>
 </html>
