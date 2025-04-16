@@ -27,42 +27,42 @@
       <textarea class="text-area" name="" id="text-input" placeholder="Enter your text here..."></textarea>
       <div class="error-message hidden">
         <span><i class="fa fa-info-circle" aria-hidden="true"></i></span>
-        <span>Limit reached! Your text exceeds <span id="limit-display">300</span> charaters.</span>
+        <span>Limit reached! Your text exceeds <span id="limit-display"></span> charaters.</span>
       </div>
   </section>
   <!-- section 2 -->
   <section class="controls">
     <div class="checkboxes">
       <label class="checkbox-label">
-        <input type="checkbox" id="exclude-spaces" checked>
+        <input type="checkbox" id="exclude-spaces" checked/>
         <span class="checkbox-span"></span>
         Excludes Spaces
       </label>
       <label class="checkbox-label">
-        <input type="checkbox" id="set-limit" checked>
+        <input type="checkbox" id="set-limit" checked/>
         <span class="checkbox-span"></span>
         Set Character Limit
       </label>
-      <input type="number" name="" id="limit-input" value="300" min="0">
+      <input type="number" name="" id="limit-input" value="300" min="0"/>
     </div>
     <div class="reading-time">
-        Approx. reading time: <span id="reading-time">  0 minute</span>
+        Approx. reading time: <span id="reading-time"> </span>
     </div>
   </section>
   <!-- section 3 -->
     <section class="stats-grid">
         <div class="stat-card purple">
-          <h2 class="stat-number">278</h2>
+          <h2 class="stat-number" id="character-count"></h2>
           <p>Total Characters</p>
           <img src="./assets/images/pattern-character-count.svg" alt="pattern-character-count" class="stat-img">
         </div>
         <div class="stat-card yellow">
-          <h2 class="stat-number">39</h2>
+          <h2 class="stat-number" id="word-count"></h2>
           <p>Word Count</p>
           <img src="./assets/images/pattern-word-count.svg" alt="pattern-word-count" class="stat-img">
         </div>
         <div class="stat-card coral">
-          <h2 class="stat-number">04</h2>
+          <h2 class="stat-number" id="sentence-count"></h2>
           <p>Sentence Count</p>
           <img src="./assets/images/pattern-sentence-count.svg" alt="pattern-sentence-count" class="stat-img">
         </div>
