@@ -12,6 +12,11 @@ const countWord = document.getElementById('word-count');
 const countSentence = document.getElementById('sentence-count');
 const densityProgress = document.getElementById('density-progress');
 const seeMoreButton = document.getElementById('seemore-button');
+const togglingTheme = document.getElementById('toggle-theme');
+const sunIcon = document.querySelector('.sun-icon');
+const moonIcon = document.querySelector('.moon-icon');
+const myBar = document.getElementById('mybar');
+
 
 //Initial Declarations & Calls
 let maxCharater = parseInt(limitInput.value);
@@ -20,9 +25,16 @@ let isLimitSet = setLimit.checked;
 let isDensityProgressExpanded = false;
 updateLimitDisplay();
 
+//Load saved theme
+const savedTheme = localStorage.getItem('theme') || 'light';
+document.body.classList.add(`${savedTheme}-theme`);
+sunIcon.style.display = savedTheme === 'dark' ? 'flex' : 'none';
+moonIcon.style.display = savedTheme === 'light' ? 'flex' : 'none';
+
+togglingTheme.addEventListener('click', toggleTheme)
+
 //Text Analysis
 textInput.addEventListener('input', analyzeText);
-
 
 
 //Controllers settings changes
@@ -60,6 +72,28 @@ seeMoreButton.addEventListener('click', () => {
     analyzeText();
 })
 
+//write your functions
+function toggleTheme() {
+    if(document.body.classList.contains('light-theme')) {
+        document.body.classList.replace('light-theme', 'dark-theme');
+        localStorage.setItem('theme', 'dark');
+        sunIcon.style.display = 'flex';
+        moonIcon.style.display = 'none';
+        textInput.style.backgroundColor = '#2A2B37';
+        textInput.style.color = '#E4E4EF';
+        myBar.style.backgroundColor = '#21222C';
+
+    } else {
+        document.body.classList.replace('dark-theme', 'light-theme');
+        localStorage.setItem('theme', 'light');
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'flex';
+        textInput.style.backgroundColor = '#F2F2F7';
+        textInput.style.color = '#2A2B37';
+        myBar.style.backgroundColor = '#F2F2F7';
+    }
+}
+
 
 function analyzeText() {
     const text = textInput.value;
@@ -90,7 +124,7 @@ function analyzeText() {
     if(isNaN(estimatedReadingTime) || estimatedReadingTime < 1 && words > 0) {
         readingTime.textContent = `&lt; 1minute`;
     }else {
-        readingTime.textContent = `${estimatedReadingTime} minute ${estimatedReadingTime !== 1 ? 's' : ''}`;
+        readingTime.textContent = `${estimatedReadingTime} minute${estimatedReadingTime !== 1 ? 's' : ''}`;
     }
     
     //Character limit check
@@ -103,6 +137,7 @@ function analyzeText() {
     }
 
     analyzeLetterDensity(text);
+    toggleTheme();
 }
 
 function updateLimitDisplay(){
@@ -118,7 +153,7 @@ function analyzeLetterDensity(text) {
         </div>
         `;
         seeMoreButton.style.display = 'none';
-        densityProgress.classList.remove(seeMoreButton);
+        densityProgress.classList.remove('seeMoreButton');
         return;
     }
 
@@ -154,7 +189,7 @@ function analyzeLetterDensity(text) {
             const letterProgressElement = document.createElement('div');
             letterProgressElement.className = 'bar';
             letterProgressElement.innerHTML = `
-                <span>${ letter.toUpperCase() }</span><div class="mybar">
+                <span>${ letter.toUpperCase() }</span><div class="mybar" id="mybar">
                     <div class="progress-fill" style="width: ${percentage}%;"></div>
                 </div><span> ${count}(${percentage}%)</span>
             `;
@@ -186,10 +221,9 @@ function analyzeLetterDensity(text) {
         seeMoreButton.style.display = 'inline-block';
         densityProgress.classList.add(seeMoreButton); 
     }
-
-}   
-        
+}           
 }
 
+//intialize
+window.onload(analyzeText(),toggleTheme());
 
-window.onload(analyzeText());

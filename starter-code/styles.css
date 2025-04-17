@@ -6,6 +6,9 @@
     --background-dark: #12131A;
     --error-color: #FF4C4C;
     --accent-color: #9B87F5;
+    --background-light: #ffffff;
+    --light-white : #ffffff;
+    --grey-500: #2A2B37;
 }
 
 /* Font Import */
@@ -31,7 +34,17 @@
 body {
     background-color: var(--background-dark);
     font-family: 'DMSans-Regular',sans-serif;
-    color: #ffffff;
+    color: var(--light-white);
+}
+
+body.light-theme {
+    background-color: var(--background-light);
+    color: black;
+}
+
+body.dark-theme {
+    background-color: var(--background-dark);
+    color: var(--light-white);
 }
 
 * {
@@ -99,10 +112,19 @@ header {
     font-size: 1.3rem;
 }
 
+/* toggle theme */
+
 .settings {
     background-color: #2A2B37;
     padding: 5px;
     border-radius: 5px;
+}
+
+.sun-icon,
+.moon-icon {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
 }
 
 /* Content */
@@ -127,10 +149,10 @@ header {
     border-radius: 0.5rem;
     font-size: 1rem;
     line-height: 1.5;
+    background-color: #2A2B37;
+    color: #E4E4EF;
     width: 100%;
     height: 200px;
-    background-color: #2A2B37;
-    color: #ffffff;
     transition: border 0.3s ease;
 }
 
@@ -186,6 +208,8 @@ margin-top: -0.8rem;
 .hidden {
     display: none;
 }
+
+
 
 @media (min-width: 640px) {
     .controls {
@@ -379,7 +403,7 @@ margin-top: -0.8rem;
 .mybar {
     width: 100%;
     height: auto;
-    background-color: #ffffff;
+    background-color: var(--grey-500);
     overflow: hidden;
     border-radius: 50px;
 }
