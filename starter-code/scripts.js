@@ -90,6 +90,7 @@ function toggleTheme() {
         moonIcon.style.display = 'flex';
         textInput.style.backgroundColor = '#F2F2F7';
         textInput.style.color = '#2A2B37';
+        spaceIndicator.style.color = '#FF4C4C !important';
         myBar.style.backgroundColor = '#F2F2F7';
     }
 }
