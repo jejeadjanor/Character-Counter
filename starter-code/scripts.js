@@ -1,6 +1,7 @@
 //DOM Elements
 const textInput = document.getElementById('text-input');
 const excludeSpaces = document.getElementById('exclude-spaces');
+const spaceIndicator = document.getElementById('space-indicator');
 const setLimit = document.getElementById('set-limit');
 const limitInput = document.getElementById('limit-input');
 const limitDisplay = document.getElementById('limit-display');
@@ -10,6 +11,7 @@ const countCharacter = document.getElementById('character-count');
 const countWord = document.getElementById('word-count');
 const countSentence = document.getElementById('sentence-count');
 const densityProgress = document.getElementById('density-progress');
+const seeMoreButton = document.getElementById('seemore-button');
 
 //Initial Declarations & Calls
 let maxCharater = parseInt(limitInput.value);
@@ -26,6 +28,7 @@ textInput.addEventListener('input', analyzeText);
 //Controllers settings changes
 excludeSpaces.addEventListener('change', () => {
     isExcludeSpaces = excludeSpaces.checked;
+    spaceIndicator.textContent = isExcludeSpaces ? '(no space)' : '(with spaces)'
     analyzeText();
 })
 
@@ -49,9 +52,18 @@ limitInput.addEventListener('input', () => {
     }
 })
 
+seeMoreButton.addEventListener('click', () => {
+    isDensityProgressExpanded = !isDensityProgressExpanded;
+    densityProgress.classList.toggle('expanded', isDensityProgressExpanded);
+    seeMoreButton.classList.toggle('expanded', isDensityProgressExpanded);
+    seeMoreButton.innerHTML = isDensityProgressExpanded ? `See less <img src="./assets/images/uparrow.png" alt="uparrow" class="downarrow" srcset="">` : `See more<img src="./assets/images/downarrow.png" alt="downarrow" class="downarrow" srcset="">`;
+    analyzeText();
+})
+
 
 function analyzeText() {
     const text = textInput.value;
+    
 
     //Character count
     let characters;
@@ -105,6 +117,8 @@ function analyzeLetterDensity(text) {
             <span>No characters found. Start typing to see letter density</span>
         </div>
         `;
+        seeMoreButton.style.display = 'none';
+        densityProgress.classList.remove(seeMoreButton);
         return;
     }
 
@@ -117,7 +131,10 @@ function analyzeLetterDensity(text) {
         densityProgress.innerHTML = `
         <div class=density-progress>
             <span>No characters found. Start typing to see letter density</span>
-         </div>`;
+        </div>
+         `;
+        seeMoreButton.style.display = 'none';
+        densityProgress.classList.remove(seeMoreButton);
         return;
     } else {
         letters.forEach(letter => {
@@ -125,12 +142,10 @@ function analyzeLetterDensity(text) {
         });
     
         //sort letter frequency
-        const sortLettersCount = Object.entries(letterCount)
-        .sort((a,b) => b[1] - a[1]).slice(0,5);
-
-        console.log(sortLettersCount);
-    
-    
+        if(isDensityProgressExpanded) {
+            const sortLettersCount = Object.entries(letterCount)
+        .sort((a,b) => b[1] - a[1]);
+        
         //display density progress
         densityProgress.innerHTML = '';
         sortLettersCount.forEach(([letter,count]) => {
@@ -143,10 +158,38 @@ function analyzeLetterDensity(text) {
                     <div class="progress-fill" style="width: ${percentage}%;"></div>
                 </div><span> ${count}(${percentage}%)</span>
             `;
+
             densityProgress.appendChild(letterProgressElement);
-        })
+        });
+        seeMoreButton.style.display = 'inline-block';
+        densityProgress.classList.add(seeMoreButton); 
     }
 
+    else {
+            const sortLettersCount = Object.entries(letterCount)
+            .sort((a,b) => b[1] - a[1]).slice(0,5);
+            //display density progress
+        densityProgress.innerHTML = '';
+        sortLettersCount.forEach(([letter,count]) => {
+            const percentage = ((count/totalLetters) * 100).toFixed(2);
+    
+            const letterProgressElement = document.createElement('div');
+            letterProgressElement.className = 'bar';
+            letterProgressElement.innerHTML = `
+                <span>${ letter.toUpperCase() }</span><div class="mybar">
+                    <div class="progress-fill" style="width: ${percentage}%;"></div>
+                </div><span> ${count}(${percentage}%)</span>
+            `;
+
+            densityProgress.appendChild(letterProgressElement);
+        });
+        seeMoreButton.style.display = 'inline-block';
+        densityProgress.classList.add(seeMoreButton); 
+    }
+
+}   
+        
 }
+
 
 window.onload(analyzeText());

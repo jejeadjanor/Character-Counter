@@ -135,8 +135,8 @@ header {
 }
 
 textarea:focus {
-    outline: none;
-    border-color: var(--accent-color);
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
 }
 
 /* controls */
@@ -391,13 +391,21 @@ margin-top: -0.8rem;
     border-radius: 50px;
 }
 
+/* see more letter density */
 .seemore-button {
     text-decoration: none;
     font-size: 1rem;
     color: #ffffff;
     margin-top: 1rem;
-    display: inline-block;
+    display: none;
+    cursor: pointer;
 }
+
+
+.seemore-button.expanded .downarrow {
+    transform: rotate(180deg);
+}
+
 
 
 
