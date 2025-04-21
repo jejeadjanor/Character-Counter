@@ -38,19 +38,19 @@
   <section class="controls">
     <div class="checkboxes">
       <label class="checkbox-label">
-        <input type="checkbox" id="exclude-spaces" checked/>
+        <input type="checkbox" id="exclude-spaces"/>
         <span class="checkbox-span"></span>
         Excludes Spaces
       </label>
       <label class="checkbox-label">
-        <input type="checkbox" id="set-limit" checked/>
+        <input type="checkbox" id="set-limit"/>
         <span class="checkbox-span"></span>
         Set Character Limit
+        <input type="number" name="" id="limit-input" value="300" min="0"/>
       </label>
-      <input type="number" name="" id="limit-input" value="300" min="0"/>
     </div>
     <div class="reading-time">
-        Approx. reading time: <span id="reading-time"> </span>
+        Approx. reading time: <span id="reading-time"></span>
     </div>
   </section>
   <!-- section 3 -->
@@ -79,7 +79,7 @@
       </div>
       <a class="seemore-button" id="seemore-button">
           See more
-          <img src="./assets/images/downarrow.png" alt="downarrow" class="downarrow" srcset="">
+          <i class="fa fa-angle-down" aria-hidden="true"></i>
       </a>
     </section>
   </main>
