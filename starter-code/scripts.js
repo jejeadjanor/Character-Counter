@@ -15,7 +15,7 @@ const seeMoreButton = document.getElementById('seemore-button');
 const togglingTheme = document.getElementById('toggle-theme');
 const sunIcon = document.querySelector('.sun-icon');
 const moonIcon = document.querySelector('.moon-icon');
-const myBar = document.getElementById('mybar');
+const logoIcon = document.querySelector('.logo-icon');
 
 
 //Initial Declarations & Calls
@@ -45,13 +45,14 @@ excludeSpaces.addEventListener('change', () => {
 })
 
 setLimit.addEventListener('change', () => {
+    limitInput.style.display = setLimit.checked ? "inline-block" : "none";
     isLimitSet = setLimit.checked;
     limitInput.disable = !isLimitSet
 
     if(isLimitSet) {
         analyzeText();
     } else {
-        errorMessage.classList.remove('hidden')
+        errorMessage.classList.add('hidden')
         textInput.style.borderColor = '';
     }
 })
@@ -68,7 +69,7 @@ seeMoreButton.addEventListener('click', () => {
     isDensityProgressExpanded = !isDensityProgressExpanded;
     densityProgress.classList.toggle('expanded', isDensityProgressExpanded);
     seeMoreButton.classList.toggle('expanded', isDensityProgressExpanded);
-    seeMoreButton.innerHTML = isDensityProgressExpanded ? `See less <img src="./assets/images/uparrow.png" alt="uparrow" class="downarrow" srcset="">` : `See more<img src="./assets/images/downarrow.png" alt="downarrow" class="downarrow" srcset="">`;
+    seeMoreButton.innerHTML = isDensityProgressExpanded ? `See less <i class="fa fa-angle-up" aria-hidden="true"></i>` : `See more <i class="fa fa-angle-down" aria-hidden="true"></i>`;
     analyzeText();
 })
 
@@ -81,7 +82,7 @@ function toggleTheme() {
         moonIcon.style.display = 'none';
         textInput.style.backgroundColor = '#2A2B37';
         textInput.style.color = '#E4E4EF';
-        myBar.style.backgroundColor = '#21222C';
+        logoIcon.setAttribute('src', './assets/images/logo-dark-theme.svg'); 
 
     } else {
         document.body.classList.replace('dark-theme', 'light-theme');
@@ -91,7 +92,7 @@ function toggleTheme() {
         textInput.style.backgroundColor = '#F2F2F7';
         textInput.style.color = '#2A2B37';
         spaceIndicator.style.color = '#FF4C4C !important';
-        myBar.style.backgroundColor = '#F2F2F7';
+        logoIcon.setAttribute('src', './assets/images/logo-light-theme.svg');
     }
 }
 
@@ -122,8 +123,8 @@ function analyzeText() {
     //Reading time: average reading speed time is 200 words per minute
     const wordsPerMinute = 200;
     const estimatedReadingTime = Math.ceil(words / wordsPerMinute) || 0;
-    if(isNaN(estimatedReadingTime) || estimatedReadingTime < 1 && words > 0) {
-        readingTime.textContent = `&lt; 1minute`;
+    if(isNaN(estimatedReadingTime) || words > 0 && words < 200) {
+        readingTime.textContent = `<1minute`;
     }else {
         readingTime.textContent = `${estimatedReadingTime} minute${estimatedReadingTime !== 1 ? 's' : ''}`;
     }
@@ -132,7 +133,7 @@ function analyzeText() {
     if(isLimitSet && characters > maxCharater) {
         errorMessage.classList.remove('hidden');
         textInput.style.borderColor = 'var(--error-color)'
-    } else{
+    }else{
         errorMessage.classList.add('hidden');
         textInput.style.borderColor = '';
     }
@@ -226,5 +227,5 @@ function analyzeLetterDensity(text) {
 }
 
 //intialize
-window.onload(analyzeText(),toggleTheme());
-
+window.addEventListener('load',analyzeText);
+window.addEventListener('load',toggleTheme);
