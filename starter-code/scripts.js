@@ -39,14 +39,14 @@ textInput.addEventListener('input', analyzeText);
 
 //Controllers settings changes
 excludeSpaces.addEventListener('change', () => {
-    isExcludeSpaces = excludeSpaces.checked;
+    // isExcludeSpaces = excludeSpaces.checked;
     spaceIndicator.textContent = isExcludeSpaces ? '(no space)' : '(with spaces)'
     analyzeText();
 })
 
 setLimit.addEventListener('change', () => {
     limitInput.style.display = setLimit.checked ? "inline-block" : "none";
-    isLimitSet = setLimit.checked;
+    // isLimitSet = setLimit.checked;
     limitInput.disable = !isLimitSet
 
     if(isLimitSet) {
