@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="./styles.css">
   
-  <title>Frontend Mentor | Character counter</title>
+  <title>Character counter</title>
 </head>
 <body class="body">
 <div class="container">
@@ -15,7 +16,10 @@
       <div class="logo">
         <img class="logo-icon" src="./assets/images/logo-dark-theme.svg" alt="logo-dark-theme" sizes="" srcset="">
       </div>
-      <img src="./assets/images/icon-sun.svg" alt="settings" sizes="" srcset="" class="settings">
+      <div id="toggle-theme">
+        <img src="./assets/images/icon-sun.svg" alt="settings" sizes="" srcset="" class="sun-icon">
+        <img src="./assets/images/icon-moon.svg" alt="settings" sizes="" srcset="" class="moon-icon">
+      </div>
   </header>
   <main>
   <!-- section 1 -->
@@ -25,39 +29,44 @@
         <h1 class="heading">in real-time</h1>
       </div>
       <textarea class="text-area" name="" id="text-input" placeholder="Enter your text here..."></textarea>
+      <div class="error-message hidden">
+        <span><i class="fa fa-info-circle" aria-hidden="true"></i></span>
+        <span>Limit reached! Your text exceeds <span id="limit-display"></span> charaters.</span>
+      </div>
   </section>
   <!-- section 2 -->
   <section class="controls">
     <div class="checkboxes">
       <label class="checkbox-label">
-        <input type="checkbox"></input>
+        <input type="checkbox" id="exclude-spaces"/>
         <span class="checkbox-span"></span>
         Excludes Spaces
       </label>
       <label class="checkbox-label">
-        <input type="checkbox"></input>
+        <input type="checkbox" id="set-limit"/>
         <span class="checkbox-span"></span>
         Set Character Limit
+        <input type="number" name="" id="limit-input" value="300" min="0"/>
       </label>
     </div>
     <div class="reading-time">
-        Approx. reading time: <span>  1 minute</span>
+        Approx. reading time: <span id="reading-time"></span>
     </div>
   </section>
   <!-- section 3 -->
     <section class="stats-grid">
         <div class="stat-card purple">
-          <h2 class="stat-number">278</h2>
-          <p>Total Characters</p>
+          <h2 class="stat-number" id="character-count"></h2>
+          <p>Total Characters <span id="space-indicator">(no space)</span></p>
           <img src="./assets/images/pattern-character-count.svg" alt="pattern-character-count" class="stat-img">
         </div>
         <div class="stat-card yellow">
-          <h2 class="stat-number">39</h2>
+          <h2 class="stat-number" id="word-count"></h2>
           <p>Word Count</p>
           <img src="./assets/images/pattern-word-count.svg" alt="pattern-word-count" class="stat-img">
         </div>
         <div class="stat-card coral">
-          <h2 class="stat-number">04</h2>
+          <h2 class="stat-number" id="sentence-count"></h2>
           <p>Sentence Count</p>
           <img src="./assets/images/pattern-sentence-count.svg" alt="pattern-sentence-count" class="stat-img">
         </div>
@@ -65,39 +74,16 @@
     <!-- section 4 -->
     <section class="letter-density">
       <h3 class="density-title">Letter Density</h3>
-      <div class="density-progress">
-        <div class="bar">
-          <span>E</span><div class="mybar">
-            <div class="progress-fill" style="width: 16.06%;"></div>
-          </div><span> 40(16.06%)</span>
-        </div>
-        <div class="bar">
-          <span>I</span><div class="mybar">
-            <div class="progress-fill" style="width: 11.65%;"></div>
-          </div><span> 29(11.65%)</span>
-        </div>
-        <div class="bar">
-          <span>T</span><div class="mybar">
-            <div class="progress-fill" style="width: 11.24%;"></div>
-          </div><span>  28(11.24%)</span>
-        </div>
-        <div class="bar">
-          <span>O</span><div class="mybar">
-            <div class="progress-fill" style="width: 8.84%;"></div>
-          </div><span> 22(8.84%)</span>
-        </div>
-        <div class="bar">
-          <span>N</span><div class="mybar">
-            <div class="progress-fill" style="width: 8.43%;"></div>
-          </div><span> 21(8.43%)</span>
-        </div>
+      <div class="density-progress" id="density-progress">
+       
       </div>
-      <a class="seemore-button">
-        See more
-        <img src="./assets/images/downarrow.png" alt="downarrow" srcset="">
+      <a class="seemore-button" id="seemore-button">
+          See more
+          <i class="fa fa-angle-down" aria-hidden="true"></i>
       </a>
     </section>
   </main>
 </div>
+<script src="./scripts.js"></script>
 </body>
 </html>

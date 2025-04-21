@@ -4,6 +4,11 @@
     --yellow-card: #FF9E22;
     --coral-card: #FF8B6E;
     --background-dark: #12131A;
+    --error-color: #FF4C4C;
+    --accent-color: #9B87F5;
+    --background-light: #ffffff;
+    --light-white : #ffffff;
+    --grey-500: #2A2B37;
 }
 
 /* Font Import */
@@ -29,7 +34,17 @@
 body {
     background-color: var(--background-dark);
     font-family: 'DMSans-Regular',sans-serif;
-    color: #ffffff;
+    color: var(--light-white);
+}
+
+body.light-theme {
+    background-color: var(--background-light);
+    color: black;
+}
+
+body.dark-theme {
+    background-color: var(--background-dark);
+    color: var(--light-white);
 }
 
 * {
@@ -97,10 +112,19 @@ header {
     font-size: 1.3rem;
 }
 
+/* toggle theme */
+
 .settings {
     background-color: #2A2B37;
     padding: 5px;
     border-radius: 5px;
+}
+
+.sun-icon,
+.moon-icon {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
 }
 
 /* Content */
@@ -125,17 +149,36 @@ header {
     border-radius: 0.5rem;
     font-size: 1rem;
     line-height: 1.5;
+    background-color: #2A2B37;
+    color: #E4E4EF;
     width: 100%;
     height: 200px;
-    background-color: #2A2B37;
-    color: #ffffff;
+    transition: border 0.3s ease;
+}
+
+textarea:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+.error-message {
+    /* display: none; */
+    color: var(--error-color);
 }
 
 /* controls */
-.controls {
+body.dark-theme .controls {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    color: #E4E4EF;
+}
+
+body.light-theme .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: #12131A;
 }
 
 .checkboxes {
@@ -153,30 +196,115 @@ header {
     padding-block: 0.3rem;
 }
 
-.checkbox-label input[type='checkbox'] {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
+.checkbox-label #exclude-spaces, .checkbox-label #set-limit {
+    display: none;
 }
-.checkbox-span {
+
+.checkbox-label input:checked + .checkbox-span {
+   background-color: #D3A0FA;
+   border-color: #D3A0FA;
+   background-image: url('../starter-code/assets/images/icon-check.svg');
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+
+body.dark-theme .checkbox-span {
     height: 1rem;
     width: 1rem;
     border-radius: 0.25rem;
-    border: 1px solid #fbfbfb;
+    border: 1px solid #E4E4EF;
     display: inline-block;
     position: relative;
 }
 
-.reading-time {
+body.light-theme .checkbox-span {
+    height: 1rem;
+    width: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid #12131A;
+    display: inline-block;
+    position: relative;
+}
+
+body.dark-theme #limit-input {
+    background-color: transparent;
+    display: none;
+    color: white;
+    padding: 4px 12px;
+    margin: 0.3rem;
+    border: 1px solid #404254;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-family: 'DMSans',sans-serif;
+    font-weight: 250;
+    outline: none;
+    width: 3.75rem;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    appearance: none;
+}
+
+body.light-theme #limit-input {
+    background-color: transparent;
+    display: none;
+    color: #12131A;
+    padding: 4px 12px;
+    margin: 0.3rem;
+    border: 1px solid #E4E4EF;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-family: 'DMSans',sans-serif;
+    font-weight: 250;
+    outline: none;
+    width: 3.75rem;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    appearance: none;
+}
+
+#limit-input::-webkit-outer-spin-button,
+#limit-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#limit-input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
+body.dark-theme .reading-time {
 font-size: 0.875;
 color: #A5A5B3;
 margin-bottom: 1.25rem;
 margin-top: -0.8rem;
 }
 
+body.light-theme .reading-time {
+    font-size: 0.875;
+    color: #12131A;
+    margin-bottom: 1.25rem;
+    margin-top: -0.8rem;
+}
+
+body.dark-theme .hidden {
+    display: none;
+}
+
+body.light-theme .hidden {
+    display: none;
+}
+
+
+
 @media (min-width: 640px) {
-    .controls {
+    body.dark-theme .controls {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items:center;
+    }
+
+    body.light-theme .controls {
         flex-direction: row;
         justify-content: space-between;
         align-items:center;
@@ -203,7 +331,13 @@ margin-top: -0.8rem;
 }
 
 @media (min-width: 768px) {
-    .controls {
+    body.dark-theme .controls {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items:center;
+    }
+
+    body.light-theme .controls {
         flex-direction: row;
         justify-content: space-between;
         align-items:center;
@@ -230,7 +364,13 @@ margin-top: -0.8rem;
 }
 
 @media (min-width: 1024px) {
-    .controls {
+    body.dark-theme .controls {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items:center;
+    }
+
+    body.light-theme .controls {
         flex-direction: row;
         justify-content: space-between;
         align-items:center;
@@ -299,23 +439,23 @@ margin-top: -0.8rem;
 .stat-img{
     position: absolute;
     top: 0;
-    left: 22rem;
+    left: 15rem;
     right: 0;
     bottom: 0;
     opacity: 0.1rem;
-    z-index: 1;
+    z-index: 0;
     pointer-events: none;
 }
 
 @media (min-width: 640px) {
     .stat-img {
-        left: 15rem;
+        left: 10rem;
     }
 }
 
 @media (min-width: 768px) {
     .stat-img {
-        left: 15rem;
+        left: 11rem;
     }
 }
 
@@ -364,10 +504,18 @@ margin-top: -0.8rem;
     margin-bottom: 1rem;
 }
 
-.mybar {
+body.dark-theme .mybar {
     width: 100%;
     height: auto;
-    background-color: #ffffff;
+    background-color: var(--grey-500);
+    overflow: hidden;
+    border-radius: 50px;
+}
+
+body.light-theme .mybar {
+    width: 100%;
+    height: auto;
+    background-color: #E4E4EF;
     overflow: hidden;
     border-radius: 50px;
 }
@@ -379,13 +527,30 @@ margin-top: -0.8rem;
     border-radius: 50px;
 }
 
-.seemore-button {
+/* see more letter density */
+body.dark-theme .seemore-button {
     text-decoration: none;
     font-size: 1rem;
-    color: #ffffff;
+    color: #12131A;
     margin-top: 1rem;
-    display: inline-block;
+    display: none;
+    cursor: pointer;
 }
+
+body.dark-theme .seemore-button {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #E4E4EF;
+    margin-top: 1rem;
+    display: none;
+    cursor: pointer;
+}
+
+
+.seemore-button.expanded .downarrow {
+    transform: rotate(180deg);
+}
+
 
 
 
