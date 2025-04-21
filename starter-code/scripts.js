@@ -40,7 +40,7 @@ textInput.addEventListener('input', analyzeText);
 //Controllers settings changes
 excludeSpaces.addEventListener('change', () => {
     isExcludeSpaces = excludeSpaces.checked;
-    spaceIndicator.textContent = isExcludeSpaces ? '(no space)' : '(with spaces)'
+    spaceIndicator.textContent = isExcludeSpaces ? '(no space)' : ''
     analyzeText();
 })
 
@@ -104,7 +104,7 @@ function analyzeText() {
     //Character count
     let characters;
 
-    if(excludeSpaces) {
+    if(isExcludeSpaces) {
         characters = text.replace(/\s/g, '').length; //using regular expression to remove all white spaces
     }else{
         characters = text.length;
@@ -220,7 +220,7 @@ function analyzeLetterDensity(text) {
             densityProgress.appendChild(letterProgressElement);
         });
         seeMoreButton.style.display = 'inline-block';
-        densityProgress.classList.add(seeMoreButton); 
+        densityProgress.classList.add('seeMoreButton'); 
     }
 }           
 }
