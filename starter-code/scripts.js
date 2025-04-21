@@ -47,7 +47,7 @@ excludeSpaces.addEventListener('change', () => {
 setLimit.addEventListener('change', () => {
     limitInput.style.display = setLimit.checked ? "inline-block" : "none";
     isLimitSet = setLimit.checked;
-    limitInput.disable = !isLimitSet
+    limitInput.disabled = !isLimitSet
 
     if(isLimitSet) {
         analyzeText();
@@ -91,7 +91,7 @@ function toggleTheme() {
         moonIcon.style.display = 'flex';
         textInput.style.backgroundColor = '#F2F2F7';
         textInput.style.color = '#2A2B37';
-        spaceIndicator.style.color = '#FF4C4C !important';
+        spaceIndicator.style.color = '#FF4C4C';
         logoIcon.setAttribute('src', './assets/images/logo-light-theme.svg');
     }
 }
@@ -139,7 +139,6 @@ function analyzeText() {
     }
 
     analyzeLetterDensity(text);
-    toggleTheme();
 }
 
 function updateLimitDisplay(){
