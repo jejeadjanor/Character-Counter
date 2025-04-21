@@ -196,14 +196,18 @@ body.light-theme .controls {
     padding-block: 0.3rem;
 }
 
-.checkbox-label #exclude-spaces, .checkbox-label #set-limit {
+.checkbox-label #set-limit {
+    display: none;
+}
+
+.checkbox-label #exclude-spaces {
     display: none;
 }
 
 .checkbox-label input:checked + .checkbox-span {
    background-color: #D3A0FA;
    border-color: #D3A0FA;
-   background-image: url('../starter-code/assets/images/icon-check.svg');
+   background-image: url('./assets/images/icon-check.svg');
    background-repeat: no-repeat;
    background-size: cover;
 }
@@ -438,8 +442,8 @@ body.light-theme .hidden {
 
 .stat-img{
     position: absolute;
-    top: 0;
-    left: 15rem;
+    width: 70%;
+    max-width: 170px;
     right: 0;
     bottom: 0;
     opacity: 0.1rem;
@@ -447,29 +451,17 @@ body.light-theme .hidden {
     pointer-events: none;
 }
 
-@media (min-width: 640px) {
-    .stat-img {
-        left: 10rem;
-    }
-}
-
-@media (min-width: 768px) {
-    .stat-img {
-        left: 11rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    .stat-img {
-        left: 10rem;
-    }
-}
 
 
 .stat-number {
     font-size: 3rem;
     font-weight: bold;
     margin-bottom: 0.75rem;
+}
+
+.stat-card p {
+    position: relative;
+    z-index: 1; /*bring text to front*/
 }
 
 @media (min-width: 640px) {
