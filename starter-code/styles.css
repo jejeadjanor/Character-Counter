@@ -162,7 +162,6 @@ textarea:focus {
 }
 
 .error-message {
-    /* display: none; */
     color: var(--error-color);
 }
 
@@ -196,13 +195,23 @@ body.light-theme .controls {
     padding-block: 0.3rem;
 }
 
-.checkbox-label #set-limit {
+body.dark-theme .checkbox-label #set-limit {
     display: none;
 }
 
-.checkbox-label #exclude-spaces {
+body.dark-theme .checkbox-label #exclude-spaces {
     display: none;
 }
+
+body.light-theme .checkbox-label #set-limit {
+    display: none;
+}
+
+body.light-theme .checkbox-label #exclude-spaces {
+    display: none;
+}
+
+
 
 .checkbox-label input:checked + .checkbox-span {
    background-color: #D3A0FA;
@@ -329,6 +338,7 @@ body.light-theme .hidden {
     }
 
     .reading-time {
+        margin-top: 0.75rem;
         font-size: 0.875;
         color: #A5A5B3;
     }
