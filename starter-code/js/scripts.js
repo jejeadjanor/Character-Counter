@@ -242,10 +242,10 @@ function analyzeLetterDensity(text) {
     }
 }           
 }
-
+// //intialize
+window.addEventListener('load',analyzeText);
+window.addEventListener('load',toggleTheme);
 }
 //only run when DOM is fully loaded
 window.addEventListener('DOMContentLoaded', initApp)
-// //intialize
-// window.addEventListener('load',analyzeText);
-// window.addEventListener('load',toggleTheme);
+
