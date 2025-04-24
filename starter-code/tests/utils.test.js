@@ -1,33 +1,39 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const {countCharacters,
     countWords,
     countSentence,
     estimateReadingTime,
-    getLetterDensity}  = require('../js/utils');
+    getLetterDensity,
+    updateCounters
+    }  = require('../js/utils');
 
 
 describe('Character Counter Functionality', () => {
     test('counts characters with spaces', () =>{
-        expect(countCharacters('Hi, Jemima')).toBe(10);
+        expect(countCharacters('Hi, Jemima')).toBe('10');
     });
     
     test('counts character with no spaces', () =>{
-        expect(countCharacters('Hi, Jemima',true)).toBe(9);
+        expect(countCharacters('Hi, Jemima',true)).toBe('09');
     });
 
     test('return 0 for empty string', () => {
-        expect(countCharacters('')).toBe(0);
+        expect(countCharacters('')).toBe('00');
     })
     
     test('count words in a string', () =>{
-        expect(countWords('Hi, Jemima')).toBe(2);
+        expect(countWords('Hi, Jemima')).toBe('02');
     });
 
     test('count words with excessive whitespace', () => {
-        expect(countWords('   I    am    a    girl   ')).toBe(4);
+        expect(countWords('   I    am    a    girl   ')).toBe('04');
     })
     
     test('count sentences', () =>{
-        expect(countSentence('Hi, Jemima. How are you doing? I am fine!')).toBe(3);
+        expect(countSentence('Hi, Jemima. How are you doing? I am fine!')).toBe('03');
     });
     test('calculate estimated reading time', () =>{
         expect(estimateReadingTime(0)).toBe('<1minute');
@@ -44,4 +50,33 @@ describe('Character Counter Functionality', () => {
         expect(result.totalLetters).toBe(0);
         expect(result.topLetters).toStrictEqual([]);
     })
+});
+
+describe('DOM interaction tests', () => {
+    let textInput,characterCount,wordCount,sentenceCount;
+    beforeEach(() => {
+        textInput = document.createElement('textarea');
+        characterCount = document.createElement('div');
+        wordCount = document.createElement('div');
+        sentenceCount = document.createElement('div');
+    })
+
+    test('test character count in DOM', () => {
+        textInput.value = 'Hello, you are welcome!';
+        updateCounters(textInput,characterCount,wordCount,sentenceCount);
+        
+        expect(characterCount.textContent).toBe('23');
+    });
+    test('test word count in DOM', () => {
+        textInput.value = 'Hello, you are welcome!';
+        updateCounters(textInput,characterCount,wordCount,sentenceCount);
+
+        expect(wordCount.textContent).toBe('04');
+    });
+    test('test sentence count in DOM', () => {
+        textInput.value = 'Hello, you are welcome!';
+        updateCounters(textInput,characterCount,wordCount,sentenceCount);
+        
+        expect(sentenceCount.textContent).toBe('01');
+    });
 });

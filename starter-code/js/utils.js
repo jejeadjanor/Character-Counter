@@ -2,17 +2,20 @@
 
 //Character count 
 function countCharacters(text, excludeSpaces = false) {
-    return excludeSpaces ? text.replace(/\s/g,'').length : text.length;
+    const characters = excludeSpaces ? text.replace(/\s/g,'').length : text.length;
+    return characters.toString().padStart(2,0);
 }
 
 //Word count
 function countWords(text) {
-    return text.trim() ? text.trim().split(/\s+/).length : 0;
+    const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+    return words.toString().padStart(2,0);
 }
 
 //Sentence count
 function countSentence(text) {
-    return text.trim() ? text.split(/[.!?}]+/).filter(s => s.trim().length > 0).length : 0;
+    const sentences = text.trim() ? text.split(/[.!?}]+/).filter(s => s.trim().length > 0).length : 0;
+    return sentences.toString().padStart(2,0);
 }
 
 //Calculate Estimated Reading time
@@ -40,10 +43,19 @@ function getLetterDensity(text, topFiveNum = 5){
 
 }
 
+//DOM Element mocking
+function updateCounters(textInput,characterCount,wordCount,sentenceCount) {
+    let text  = textInput.value;
+    characterCount.textContent = countCharacters(text);
+    wordCount.textContent = countWords(text);
+    sentenceCount.textContent = countSentence(text);
+}
+
 module.exports = {
     countCharacters,
     countWords,
     countSentence,
     estimateReadingTime,
-    getLetterDensity
+    getLetterDensity,
+    updateCounters
 };

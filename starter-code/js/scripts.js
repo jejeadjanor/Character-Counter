@@ -23,8 +23,6 @@ const sunIcon = document.querySelector('.sun-icon');
 const moonIcon = document.querySelector('.moon-icon');
 const logoIcon = document.querySelector('.logo-icon');
 
-//only run if DOM is properly available
-// if(!textInput || !sunIcon || !moonIcon || !logoIcon) return;
 
 //Initial Declarations & Calls
 maxCharater = parseInt(limitInput?.value || 0);
@@ -41,10 +39,10 @@ if(sunIcon && moonIcon) {
     moonIcon.style.display = savedTheme === 'light' ? 'flex' : 'none';
 }
 
-togglingTheme?.addEventListener('click', toggleTheme)
+togglingTheme.addEventListener('click', toggleTheme)
 
 //Text Analysis
-textInput?.addEventListener('input', analyzeText);
+textInput.addEventListener('input', analyzeText);
 
 
 //Controllers settings changes
@@ -75,7 +73,7 @@ limitInput.addEventListener('input', () => {
     }
 })
 
-seeMoreButton?.addEventListener('click', () => {
+seeMoreButton.addEventListener('click', () => {
     isDensityProgressExpanded = !isDensityProgressExpanded;
     densityProgress.classList.toggle('expanded', isDensityProgressExpanded);
     seeMoreButton.classList.toggle('expanded', isDensityProgressExpanded);
@@ -251,4 +249,3 @@ window.addEventListener('DOMContentLoaded', initApp)
 // //intialize
 // window.addEventListener('load',analyzeText);
 // window.addEventListener('load',toggleTheme);
-module.exports = {initApp};
