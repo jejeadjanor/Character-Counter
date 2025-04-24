@@ -2,6 +2,7 @@
  * @jest-environment jsdom
  */
 
+const { describe } = require('node:test');
 const {countCharacters,
     countWords,
     countSentence,
@@ -10,7 +11,7 @@ const {countCharacters,
     updateCounters
     }  = require('../js/utils');
 
-
+// Character Counter Functionality
 describe('Character Counter Functionality', () => {
     test('counts characters with spaces', () =>{
         expect(countCharacters('Hi, Jemima')).toBe('10');
@@ -22,8 +23,11 @@ describe('Character Counter Functionality', () => {
 
     test('return 0 for empty string', () => {
         expect(countCharacters('')).toBe('00');
-    })
-    
+    });
+});
+
+// Word Counter Functionality
+describe('Word Count Functionality', () =>{
     test('count words in a string', () =>{
         expect(countWords('Hi, Jemima')).toBe('02');
     });
@@ -31,15 +35,30 @@ describe('Character Counter Functionality', () => {
     test('count words with excessive whitespace', () => {
         expect(countWords('   I    am    a    girl   ')).toBe('04');
     })
-    
+});
+
+// Sentence Counter Functionality
+describe('Sentence Count Functionality', () =>{
     test('count sentences', () =>{
         expect(countSentence('Hi, Jemima. How are you doing? I am fine!')).toBe('03');
     });
-    test('calculate estimated reading time', () =>{
-        expect(estimateReadingTime(0)).toBe('<1minute');
+});
+
+// Reading Time Functionality
+describe('Reading Time Functionality', () =>{
+    test('calculate estimated reading time with no input word', () =>{
         expect(estimateReadingTime(100)).toBe('<1minute');
+    });
+    test('calculate estimated reading time with 100 words', () =>{
+        expect(estimateReadingTime(200)).toBe('1minute');
+    });
+    test('calculate estimated reading time with 400 words', () =>{
         expect(estimateReadingTime(400)).toBe('2minutes');
     });
+});
+
+// Letter Density Functionality
+describe('Letter Density Functionality', () =>{
     test('topletters letter density analysis', () =>{
         const result = getLetterDensity('Kofi is going to school.')
         expect(result.totalLetters).toBe(19);
@@ -52,6 +71,8 @@ describe('Character Counter Functionality', () => {
     })
 });
 
+
+// DOM Element Mocking
 describe('DOM interaction tests', () => {
     let textInput,characterCount,wordCount,sentenceCount;
     beforeEach(() => {

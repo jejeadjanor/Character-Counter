@@ -25,9 +25,9 @@ const logoIcon = document.querySelector('.logo-icon');
 
 
 //Initial Declarations & Calls
-maxCharater = parseInt(limitInput?.value || 0);
-isExcludeSpaces = excludeSpaces?.checked || false;
-isLimitSet = setLimit?.checked || false;
+maxCharater = parseInt(limitInput.value || 0);
+isExcludeSpaces = excludeSpaces.checked || false;
+isLimitSet = setLimit.checked || false;
 isDensityProgressExpanded = false;
 updateLimitDisplay();
 
@@ -106,7 +106,7 @@ function toggleTheme() {
 
 
 function analyzeText() {
-    const text = textInput?.value || '';
+    const text = textInput.value || '';
     
 
     //Character count
