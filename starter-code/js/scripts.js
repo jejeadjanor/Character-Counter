@@ -1,3 +1,9 @@
+let maxCharater;
+let isExcludeSpaces;
+let isLimitSet;
+let isDensityProgressExpanded = false;
+
+function initApp() {
 //DOM Elements
 const textInput = document.getElementById('text-input');
 const excludeSpaces = document.getElementById('exclude-spaces');
@@ -17,24 +23,28 @@ const sunIcon = document.querySelector('.sun-icon');
 const moonIcon = document.querySelector('.moon-icon');
 const logoIcon = document.querySelector('.logo-icon');
 
+//only run if DOM is properly available
+// if(!textInput || !sunIcon || !moonIcon || !logoIcon) return;
 
 //Initial Declarations & Calls
-let maxCharater = parseInt(limitInput.value);
-let isExcludeSpaces = excludeSpaces.checked;
-let isLimitSet = setLimit.checked;
-let isDensityProgressExpanded = false;
+maxCharater = parseInt(limitInput?.value || 0);
+isExcludeSpaces = excludeSpaces?.checked || false;
+isLimitSet = setLimit?.checked || false;
+isDensityProgressExpanded = false;
 updateLimitDisplay();
 
 //Load saved theme
-const savedTheme = localStorage.getItem('theme') || 'light';
-document.body.classList.add(`${savedTheme}-theme`);
-sunIcon.style.display = savedTheme === 'dark' ? 'flex' : 'none';
-moonIcon.style.display = savedTheme === 'light' ? 'flex' : 'none';
+if(sunIcon && moonIcon) {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.body.classList.add(`${savedTheme}-theme`);
+    sunIcon.style.display = savedTheme === 'dark' ? 'flex' : 'none';
+    moonIcon.style.display = savedTheme === 'light' ? 'flex' : 'none';
+}
 
-togglingTheme.addEventListener('click', toggleTheme)
+togglingTheme?.addEventListener('click', toggleTheme)
 
 //Text Analysis
-textInput.addEventListener('input', analyzeText);
+textInput?.addEventListener('input', analyzeText);
 
 
 //Controllers settings changes
@@ -65,7 +75,7 @@ limitInput.addEventListener('input', () => {
     }
 })
 
-seeMoreButton.addEventListener('click', () => {
+seeMoreButton?.addEventListener('click', () => {
     isDensityProgressExpanded = !isDensityProgressExpanded;
     densityProgress.classList.toggle('expanded', isDensityProgressExpanded);
     seeMoreButton.classList.toggle('expanded', isDensityProgressExpanded);
@@ -98,7 +108,7 @@ function toggleTheme() {
 
 
 function analyzeText() {
-    const text = textInput.value;
+    const text = textInput?.value || '';
     
 
     //Character count
@@ -121,12 +131,16 @@ function analyzeText() {
     countSentence.textContent = sentences.toString().padStart(2,0);
 
     //Reading time: average reading speed time is 200 words per minute
-    const wordsPerMinute = 200;
-    const estimatedReadingTime = Math.ceil(words / wordsPerMinute) || 0;
-    if(isNaN(estimatedReadingTime) || words > 0 && words < 200) {
-        readingTime.textContent = `<1minute`;
+    if(readingTime) {
+        const wordsPerMinute = 200;
+        const estimatedReadingTime = Math.ceil(words / wordsPerMinute) || 0;
+        if(isNaN(estimatedReadingTime) || words > 0 && words < 200) {
+            readingTime.textContent = `<1minute`;
+        }else {
+            readingTime.textContent = `${estimatedReadingTime} minute${estimatedReadingTime !== 1 ? 's' : ''}`;
+        }
     }else {
-        readingTime.textContent = `${estimatedReadingTime} minute${estimatedReadingTime !== 1 ? 's' : ''}`;
+        console.error('readingTime element not found');
     }
     
     //Character limit check
@@ -134,15 +148,21 @@ function analyzeText() {
         errorMessage.classList.remove('hidden');
         textInput.style.borderColor = 'var(--error-color)'
     }else{
-        errorMessage.classList.add('hidden');
-        textInput.style.borderColor = '';
+        if(errorMessage) {
+            errorMessage.classList.add('hidden');
+            textInput.style.borderColor = '';
+        }else {
+            console.error('errorMessage element not found');
+        }
     }
 
     analyzeLetterDensity(text);
 }
 
 function updateLimitDisplay(){
-    limitDisplay.textContent = maxCharater;
+    if(limitDisplay) {
+        limitDisplay.textContent = maxCharater;
+    }
 }
 
 function analyzeLetterDensity(text) {
@@ -225,6 +245,10 @@ function analyzeLetterDensity(text) {
 }           
 }
 
-//intialize
-window.addEventListener('load',analyzeText);
-window.addEventListener('load',toggleTheme);
+}
+//only run when DOM is fully loaded
+window.addEventListener('DOMContentLoaded', initApp)
+// //intialize
+// window.addEventListener('load',analyzeText);
+// window.addEventListener('load',toggleTheme);
+module.exports = {initApp};
