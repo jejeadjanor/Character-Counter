@@ -1,15 +1,13 @@
 /**
  * @jest-environment jsdom
  */
-
-const { describe } = require('node:test');
-const {countCharacters,
+import {countCharacters,
     countWords,
-    countSentence,
+    countSentences,
     estimateReadingTime,
     getLetterDensity,
     updateCounters
-    }  = require('../js/utils');
+    }  from '../js/utils';
 
 // Character Counter Functionality
 describe('Character Counter Functionality', () => {
@@ -40,17 +38,17 @@ describe('Word Count Functionality', () =>{
 // Sentence Counter Functionality
 describe('Sentence Count Functionality', () =>{
     test('count sentences', () =>{
-        expect(countSentence('Hi, Jemima. How are you doing? I am fine!')).toBe('03');
+        expect(countSentences('Hi, Jemima. How are you doing? I am fine!')).toBe('03');
     });
 });
 
 // Reading Time Functionality
 describe('Reading Time Functionality', () =>{
     test('calculate estimated reading time with no input word', () =>{
-        expect(estimateReadingTime(100)).toBe('<1minute');
+        expect(estimateReadingTime(0)).toBe('0minute');
     });
     test('calculate estimated reading time with 100 words', () =>{
-        expect(estimateReadingTime(200)).toBe('1minute');
+        expect(estimateReadingTime(100)).toBe('<1minute');
     });
     test('calculate estimated reading time with 400 words', () =>{
         expect(estimateReadingTime(400)).toBe('2minutes');
