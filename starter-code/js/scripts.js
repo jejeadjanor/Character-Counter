@@ -239,6 +239,7 @@ function analyzeLetterDensity(text) {
 window.addEventListener('load',analyzeText);
 // window.addEventListener('load',toggleTheme);
 }
+
 //only run when DOM is fully loaded
 window.addEventListener('DOMContentLoaded', initApp)
-;
+
