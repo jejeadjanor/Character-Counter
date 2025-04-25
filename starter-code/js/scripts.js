@@ -1,3 +1,5 @@
+import {countCharacters, countWords, countSentences, estimateReadingTime} from './utils.js';
+
 let maxCharater;
 let isExcludeSpaces;
 let isLimitSet;
@@ -106,37 +108,28 @@ function toggleTheme() {
 
 
 function analyzeText() {
-    const text = textInput.value || '';
+    const text = textInput.value ;
     
 
     //Character count
     let characters;
 
-    if(isExcludeSpaces) {
-        characters = text.replace(/\s/g, '').length; //using regular expression to remove all white spaces
-    }else{
-        characters = text.length;
-    }
+    characters = countCharacters(text, isExcludeSpaces); 
+    
 
-    countCharacter.textContent = characters.toString().padStart(2,0);
+    countCharacter.textContent = characters;
 
     //Word count
-    const words = text.trim() ? text.trim().split(/\s+/).length : 0;
-    countWord.textContent = words.toString().padStart(2,0);
+    const words = countWords(text);
+    countWord.textContent = words;
 
     //sentence count
-    const sentences = text.trim() ?  text.split(/[.!?}]+/).filter(sentence => sentence.trim().length > 0).length : 0;
-    countSentence.textContent = sentences.toString().padStart(2,0);
+    const sentences = countSentences(text);
+    countSentence.textContent = sentences;
 
     //Reading time: average reading speed time is 200 words per minute
     if(readingTime) {
-        const wordsPerMinute = 200;
-        const estimatedReadingTime = Math.ceil(words / wordsPerMinute) || 0;
-        if(isNaN(estimatedReadingTime) || words > 0 && words < 200) {
-            readingTime.textContent = `<1minute`;
-        }else {
-            readingTime.textContent = `${estimatedReadingTime} minute${estimatedReadingTime !== 1 ? 's' : ''}`;
-        }
+        readingTime.textContent = estimateReadingTime(characters,200);
     }else {
         console.error('readingTime element not found');
     }
@@ -244,8 +237,9 @@ function analyzeLetterDensity(text) {
 }
 // //intialize
 window.addEventListener('load',analyzeText);
-window.addEventListener('load',toggleTheme);
+// window.addEventListener('load',toggleTheme);
 }
+
 //only run when DOM is fully loaded
 window.addEventListener('DOMContentLoaded', initApp)
 
